@@ -10,10 +10,10 @@ class CuentaModel
         $this->db = Database::getInstance([])->getConnection();
     }
 
-// Listar todas las cuentas con su tipo (sin clientes todavía)
-public function getAll()
-{
-    $stmt = $this->db->query("
+    // Listar todas las cuentas con su tipo (sin clientes todavía)
+    public function getAll()
+    {
+        $stmt = $this->db->query("
         SELECT c.*, 
                t.nombre AS tipo_nombre, 
                t.limite_clientes, 
@@ -22,9 +22,8 @@ public function getAll()
         INNER JOIN tipos_cuenta t ON c.tipo_id = t.id
         ORDER BY c.id DESC
     ");
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // Obtener una cuenta por ID
     public function getById($id)
