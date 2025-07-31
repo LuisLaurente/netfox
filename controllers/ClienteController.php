@@ -15,7 +15,35 @@ class ClienteController
 
     public function index()
     {
-        $clientes = $this->model->getAll();
+        $data = $this->model->getAll();
+        $cuentasAgrupadas = [];
+
+        foreach ($data as $row) {
+            $cuentaId = $row['cuenta_id'];
+            if (!isset($cuentasAgrupadas[$cuentaId])) {
+                $cuentasAgrupadas[$cuentaId] = [
+                    'id' => $row['cuenta_id'],
+                    'correo' => $row['correo'],
+                    'contrasena' => $row['contrasena'],
+                    'cuenta_venc' => $row['cuenta_venc'],
+                    'tipo_nombre' => $row['tipo_nombre'],
+                    'digitos_codigo' => $row['digitos_codigo'],
+                    'color' => $row['color'] ?? '#3498db', // ✅ Aquí debe asignarse
+                    'clientes' => []
+                ];
+            }
+            if ($row['cliente_id']) {
+                $cuentasAgrupadas[$cuentaId]['clientes'][] = [
+                    'id' => $row['cliente_id'],
+                    'nombre' => $row['cliente_nombre'],
+                    'celular' => $row['celular'],
+                    'costo' => $row['costo'],
+                    'codigo_cliente' => $row['codigo_cliente'],
+                    'cliente_venc' => $row['cliente_venc']
+                ];
+            }
+        }
+
         require 'views/clientes/index.php';
     }
 
@@ -72,5 +100,38 @@ class ClienteController
     {
         $this->model->delete($id);
         redirect(url('cliente/index'));
+    }
+    public function vencidos()
+    {
+        $clientesVencidos = $this->model->getVencidos();
+
+        // Agrupar vencidos por cliente
+        $agrupados = [];
+        foreach ($clientesVencidos as $c) {
+            $id = $c['cliente_id'];
+            if (!isset($agrupados[$id])) {
+                $agrupados[$id] = [
+                    'nombre' => $c['cliente_nombre'],
+                    'celular' => $c['celular'],
+                    'cuentas' => []
+                ];
+            }
+            $agrupados[$id]['cuentas'][] = [
+                'cliente_id' => $c['cliente_id'], // ✅ corregido
+                'tipo' => $c['tipo_nombre'],
+                'correo' => $c['correo'],
+                'contrasena' => $c['contrasena'],
+                'codigo' => $c['codigo_cliente'] ?: substr($c['celular'], -$c['digitos_codigo']),
+                'costo' => $c['costo'], // ✅ añadimos el costo
+                'cliente_venc' => $c['cliente_venc']
+            ];
+        }
+
+        require 'views/clientes/vencidos.php';
+    }
+    public function renovar($id)
+    {
+        $this->model->renovarMes($id);
+        redirect(url('cliente/vencidos'));
     }
 }

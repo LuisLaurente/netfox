@@ -5,6 +5,9 @@
     <label>Nombre:</label><br>
     <input type="text" name="nombre" value="<?= $tipo['nombre'] ?? '' ?>" required><br><br>
 
+    <label>Color del borde (HEX):</label><br>
+    <input type="color" name="color" value="<?= $tipo['color'] ?? '#3498db' ?>"><br><br>
+
     <label>Límite de clientes:</label><br>
     <input type="number" name="limite" value="<?= $tipo['limite_clientes'] ?? '' ?>" required><br><br>
 

@@ -28,8 +28,9 @@ class TipoCuentaModel
     public function create($data)
     {
         $stmt = $this->db->prepare("
-        INSERT INTO tipos_cuenta (nombre, limite_clientes, precio_mensual, precio_especial, ciclo_especial, digitos_codigo) 
-        VALUES (:nombre, :limite, :precio_mensual, :precio_especial, :ciclo, :digitos_codigo)
+        INSERT INTO tipos_cuenta 
+        (nombre, limite_clientes, precio_mensual, precio_especial, ciclo_especial, digitos_codigo, color) 
+        VALUES (:nombre, :limite, :precio_mensual, :precio_especial, :ciclo, :digitos_codigo, :color)
     ");
         return $stmt->execute($data);
     }
@@ -38,7 +39,13 @@ class TipoCuentaModel
     {
         $stmt = $this->db->prepare("
         UPDATE tipos_cuenta 
-        SET nombre=:nombre, limite_clientes=:limite, precio_mensual=:precio_mensual, precio_especial=:precio_especial, ciclo_especial=:ciclo, digitos_codigo=:digitos_codigo
+        SET nombre=:nombre, 
+            limite_clientes=:limite, 
+            precio_mensual=:precio_mensual, 
+            precio_especial=:precio_especial, 
+            ciclo_especial=:ciclo, 
+            digitos_codigo=:digitos_codigo,
+            color=:color
         WHERE id=:id
     ");
         $data['id'] = $id;
