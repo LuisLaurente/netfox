@@ -27,7 +27,8 @@ class TipoCuentaController {
             'precio_mensual' => (float)$_POST['precio_mensual'],
             'precio_especial' => $_POST['precio_especial'] !== '' ? (float)$_POST['precio_especial'] : null,
             'ciclo' => isset($_POST['ciclo_especial']) ? 1 : 0,
-            'digitos_codigo' => (int)$_POST['digitos_codigo']
+            'digitos_codigo' => (int)$_POST['digitos_codigo'],
+            'color' => $_POST['color'] ?? '#3498db' // ✅ Aquí agregamos el color
 
         ];
         $this->model->create($data);
@@ -48,7 +49,8 @@ class TipoCuentaController {
             'precio_mensual' => (float)$_POST['precio_mensual'],
             'precio_especial' => $_POST['precio_especial'] !== '' ? (float)$_POST['precio_especial'] : null,
             'ciclo' => isset($_POST['ciclo_especial']) ? 1 : 0,
-            'digitos_codigo' => (int)$_POST['digitos_codigo']
+            'digitos_codigo' => (int)$_POST['digitos_codigo'],
+            'color' => $_POST['color'] ?? '#3498db' // ✅ Aquí agregamos el color
 
         ];
         $this->model->update($id, $data);

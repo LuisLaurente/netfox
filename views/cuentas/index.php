@@ -2,6 +2,7 @@
 <h2>Cuentas</h2>
 <a href="<?= url('cuenta/create') ?>">➕ Nueva Cuenta</a>
 <br><br>
+
 <table border="1" cellpadding="8">
     <tr>
         <th>ID</th>

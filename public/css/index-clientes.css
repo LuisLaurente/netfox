@@ -1,0 +1,120 @@
+/* ============================
+   ESTILOS PARA INDEX DE CLIENTES
+============================ */
+
+/* Fondo general */
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+#contenedor {
+    margin-top: 15px;
+}
+
+/* ======== TARJETAS DE CUENTA ======== */
+.tarjeta-cuenta {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+.tarjeta-cuenta:hover {
+    transform: scale(1.01);
+}
+.tarjeta-cuenta h3 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+}
+.tarjeta-cuenta p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Lista de clientes */
+.tarjeta-cuenta ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tarjeta-cuenta li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #ccc;
+    font-size: 14px;
+}
+.tarjeta-cuenta li:last-child {
+    border-bottom: none;
+}
+
+/* ======== ALERTAS DE VENCIMIENTO ======== */
+.vencido {
+    color: #fff !important;
+    background: #e74c3c;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.proximo {
+    color: #fff !important;
+    background: #e67e22;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.vigente {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* ======== BOTONES ======== */
+button {
+    margin-left: 5px;
+    padding: 4px 8px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+button:hover {
+    background: #2980b9;
+}
+
+/* Botones de filtro */
+div > button {
+    margin: 0 5px 10px 0;
+    padding: 6px 10px;
+    background: #6c757d;
+    border-radius: 5px;
+    font-size: 14px;
+}
+div > button:hover {
+    background: #495057;
+}
+
+/* ======== BUSCADOR ======== */
+#buscar {
+    width: 300px;
+    padding: 7px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* ======== ESTILOS RESPONSIVOS ======== */
+@media (max-width: 768px) {
+    .tarjeta-cuenta {
+        font-size: 14px;
+    }
+    #buscar {
+        width: 100%;
+    }
+}
